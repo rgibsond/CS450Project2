@@ -1,5 +1,6 @@
 package com.example.rgdrys13.project2;
 
+import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -10,7 +11,7 @@ import java.util.Observer;
 public class MainActivity extends AppCompatActivity implements Observer {
 
     // instance data
-    private TextView xView, yView, zView;
+    private TextView xView, yView, zView, latView, longView;
     private AccelerometerHandler accelHandler;
     private LocationHandler locationHandler;
 
@@ -22,6 +23,9 @@ public class MainActivity extends AppCompatActivity implements Observer {
         xView = (TextView) findViewById(R.id.x_accel_view);
         yView = (TextView) findViewById(R.id.y_accel_view);
         zView = (TextView) findViewById(R.id.z_accel_view);
+
+        latView = (TextView) findViewById(R.id.latitude_value_view);
+        longView = (TextView) findViewById(R.id.longitude_value_view);
     }
 
     @Override
@@ -31,15 +35,23 @@ public class MainActivity extends AppCompatActivity implements Observer {
         accelHandler.addObserver(this);
 
         locationHandler = new LocationHandler(this);
-        accelHandler.addObserver(this);
+        locationHandler.addObserver(this);
     }
 
     @Override
     public void update(Observable observable, Object o) {
-        float[] xyz = (float[]) o;
 
-        this.xView.setText(Float.toString(xyz[0]));
-        this.yView.setText(Float.toString(xyz[1]));
-        this.zView.setText(Float.toString(xyz[2]));
+        if (observable instanceof AccelerometerHandler) {
+            float[] xyz = (float[]) o;
+            this.xView.setText(Float.toString(xyz[0]));
+            this.yView.setText(Float.toString(xyz[1]));
+            this.zView.setText(Float.toString(xyz[2]));
+        }
+
+        if (observable instanceof LocationHandler){
+            Location location = (Location) o;
+            this.latView.setText(Double.toString(location.getLatitude()));
+            this.longView.setText(Double.toString(location.getLongitude()));
+        }
     }
 }

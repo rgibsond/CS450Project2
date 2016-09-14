@@ -49,6 +49,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/z_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/y_view"
@@ -65,6 +66,48 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/default_text_size"
             android:text="@string/z"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/latitude_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/z_view"
+        android:paddingTop="@dimen/default_padding"
+        >
+
+        <TextView
+            android:id="@+id/latitude_value_view"
+            style="@style/TextViewTheme"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_text_size"
+            android:text="@string/lat"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/longitude_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/latitude_view"
+        android:paddingTop="@dimen/default_padding"
+        >
+
+        <TextView
+            android:id="@+id/longitude_value_view"
+            style="@style/TextViewTheme"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_text_size"
+            android:text="@string/lon"
             />
     </LinearLayout>
 

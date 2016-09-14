@@ -8,6 +8,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 
 import java.util.Observable;
@@ -28,7 +29,8 @@ public class LocationHandler extends Observable {
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-
+                setChanged();
+                notifyObservers(location);
             }
 
             @Override
@@ -47,7 +49,22 @@ public class LocationHandler extends Observable {
             }
         };
 
+        while (ActivityCompat.checkSelfPermission(this.activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this.activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // System.out.println("BEGIN PERMISSION CHECK XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            if (ActivityCompat.checkSelfPermission(this.activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this.activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                this.activity.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+                this.activity.requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
+
+
+                //return;
+            }
+            System.out.println("waiting XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        }
+
+        System.out.println("PERMISSION CHECK PASSED XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
 
     }
 }

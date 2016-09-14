@@ -3,4 +3,6 @@
     <string name="z">Z</string>
     <string name="Y">Y</string>
     <string name="X">X</string>
+    <string name="lat">Lat</string>
+    <string name="lon">Long</string>
 </resources>
