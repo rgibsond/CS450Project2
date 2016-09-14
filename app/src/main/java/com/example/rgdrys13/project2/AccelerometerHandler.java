@@ -35,7 +35,7 @@ public class AccelerometerHandler extends Observable implements SensorEventListe
 
         long currentTime = System.currentTimeMillis();
 
-        if (currentTime - prevTime > ONE_SECOND_MILLISECONDS/2) {
+        if (currentTime - prevTime > ONE_SECOND_MILLISECONDS) {
             setChanged();
             notifyObservers(sensorEvent.values);
             prevTime=currentTime;

@@ -11,7 +11,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
     // instance data
     private TextView xView, yView, zView;
-    private AccelerometerHandler handler;
+    private AccelerometerHandler accelHandler;
+    private LocationHandler locationHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +27,11 @@ public class MainActivity extends AppCompatActivity implements Observer {
     @Override
     protected void onStart() {
         super.onStart();
-        handler = new AccelerometerHandler(this);
-        handler.addObserver(this);
+        accelHandler = new AccelerometerHandler(this);
+        accelHandler.addObserver(this);
+
+        locationHandler = new LocationHandler(this);
+        accelHandler.addObserver(this);
     }
 
     @Override
