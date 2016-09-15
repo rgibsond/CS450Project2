@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,109 +8,119 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:gravity="center"
-    tools:context="com.example.rgdrys13.project2.MainActivity">
+    >
 
-    <LinearLayout
-        android:id="@+id/x_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/x_accel_view"
-            style="@style/TextViewTheme"
-            />
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        tools:context="com.example.rgdrys13.project2.MainActivity">
 
         <TextView
+            android:id="@+id/accel_header"
+            style="@style/HeaderStyle"
+            android:text="Accelerometer Values:"/>
+
+        <LinearLayout
+            android:id="@+id/x_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/default_text_size"
-            android:text="@string/X"
-            />
-    </LinearLayout>
+            android:layout_below="@id/accel_header">
 
-    <LinearLayout
-        android:id="@+id/y_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/default_padding"
-        android:layout_below="@id/x_view">
+            <TextView
+                android:id="@+id/x_accel_view"
+                style="@style/TextViewTheme"
+                />
 
-        <TextView
-            android:id="@+id/y_accel_view"
-            style="@style/TextViewTheme"
-            />
+            <TextView
+               style="@style/LabelTheme"
+                android:text="@string/X"
+                />
+        </LinearLayout>
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/y_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/default_text_size"
-            android:text="@string/Y"
-            />
-    </LinearLayout>
+            android:paddingTop="@dimen/default_padding"
+            android:layout_below="@id/x_view">
 
-    <LinearLayout
-        android:id="@+id/z_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/y_view"
-        android:paddingTop="@dimen/default_padding"
-        >
+            <TextView
+                android:id="@+id/y_accel_view"
+                style="@style/TextViewTheme"
+                />
 
-        <TextView
-            android:id="@+id/z_accel_view"
-            style="@style/TextViewTheme"
-            />
+            <TextView
+                style="@style/LabelTheme"
+                android:text="@string/Y"
+                />
+        </LinearLayout>
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/z_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/default_text_size"
-            android:text="@string/z"
-            />
-    </LinearLayout>
+            android:layout_below="@id/y_view"
+            android:paddingTop="@dimen/default_padding"
+            android:paddingBottom="@dimen/double_padding"
+            >
 
-    <LinearLayout
-        android:id="@+id/latitude_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/z_view"
-        android:paddingTop="@dimen/default_padding"
-        >
+            <TextView
+                android:id="@+id/z_accel_view"
+                style="@style/TextViewTheme"
+                />
 
-        <TextView
-            android:id="@+id/latitude_value_view"
-            style="@style/TextViewTheme"
-            />
+            <TextView
+                style="@style/LabelTheme"
+                android:text="@string/z"
+                />
+        </LinearLayout>
 
         <TextView
+            android:id="@+id/location_header"
+            style="@style/HeaderStyle"
+            android:layout_below="@id/z_view"
+            android:text="Location Values"
+            />
+
+        <LinearLayout
+            android:id="@+id/latitude_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/default_text_size"
-            android:text="@string/lat"
-            />
-    </LinearLayout>
+            android:layout_below="@id/location_header"
+            >
 
-    <LinearLayout
-        android:id="@+id/longitude_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/latitude_view"
-        android:paddingTop="@dimen/default_padding"
-        >
+            <TextView
+                android:id="@+id/latitude_value_view"
+                style="@style/TextViewTheme"
+                />
 
-        <TextView
-            android:id="@+id/longitude_value_view"
-            style="@style/TextViewTheme"
-            />
+            <TextView
+                style="@style/LabelTheme"
+                android:text="@string/lat"
+                />
+        </LinearLayout>
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/longitude_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/default_text_size"
-            android:text="@string/lon"
-            />
-    </LinearLayout>
+            android:layout_below="@id/latitude_view"
+            android:paddingTop="@dimen/default_padding"
+            >
+
+            <TextView
+                android:id="@+id/longitude_value_view"
+                style="@style/TextViewTheme"
+                />
+
+            <TextView
+                style="@style/LabelTheme"
+                android:text="@string/lon"
+                />
+        </LinearLayout>
 
 
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

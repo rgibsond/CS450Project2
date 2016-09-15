@@ -16,4 +16,16 @@
         <item name="android:background">@color/lightGray</item>
     </style>
 
+    <style name="LabelTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/default_text_size</item>
+    </style>
+
+    <style name="HeaderStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/default_text_size</item>
+    </style>
+
 </resources>

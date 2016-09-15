@@ -4,13 +4,14 @@ import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-
 import java.util.Observable;
 import java.util.Observer;
 
 public class MainActivity extends AppCompatActivity implements Observer {
 
     // instance data
+    public static final String LATITUDE = "Latitude";
+    public static final String LONGITUDE = "Longitude";
     private TextView xView, yView, zView, latView, longView;
     private AccelerometerHandler accelHandler;
     private LocationHandler locationHandler;
@@ -31,11 +32,27 @@ public class MainActivity extends AppCompatActivity implements Observer {
     @Override
     protected void onStart() {
         super.onStart();
+
+        String latVal = getPreferences(MODE_PRIVATE).getString(LATITUDE, "");
+        String longVal = getPreferences(MODE_PRIVATE).getString(LONGITUDE, "");
+
+        latView.setText(latVal);
+        longView.setText(longVal);
+
         accelHandler = new AccelerometerHandler(this);
         accelHandler.addObserver(this);
 
         locationHandler = new LocationHandler(this);
         locationHandler.addObserver(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        getPreferences(MODE_PRIVATE).edit().putString(LATITUDE, (String) latView.getText()).apply();
+        getPreferences(MODE_PRIVATE).edit().putString(LONGITUDE, (String) longView.getText()).apply();
+
     }
 
     @Override
